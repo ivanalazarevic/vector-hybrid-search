@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+        <PackageReference Include="Swashbuckle.AspNetCore" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Modules\DataIngestion\VectorHybridSearch.DataIngestion\VectorHybridSearch.DataIngestion.csproj" />
+      <ProjectReference Include="..\Modules\Search\VectorHybridSearch.Search\VectorHybridSearch.Search.csproj" />
+      <ProjectReference Include="..\Shared\VectorHybridSearch.Shared.Api\VectorHybridSearch.Shared.Api.csproj" />
+      <ProjectReference Include="..\Shared\VectorHybridSearch.Shared.Contracts\VectorHybridSearch.Shared.Contracts.csproj" />
+      <ProjectReference Include="..\Shared\VectorHybridSearch.Shared.Module\VectorHybridSearch.Shared.Module.csproj" />
+    </ItemGroup>
+
+</Project>

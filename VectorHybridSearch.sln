@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{74AB88C7-C045-463F-8F42-C856D6503E93}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VectorHybridSearchAPI", "VectorHybridSearchAPI", "{E1E4977D-5948-483C-8929-A881E55C1E58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorHybridSearchAPI.Bootstrapper", "src\VectorHybridSearchAPI\VectorHybridSearchAPI.Bootstrapper\VectorHybridSearchAPI.Bootstrapper.csproj", "{68BD9AB8-9DC9-4393-968D-1BD1BA4CADC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{F6FBAFA7-E953-4350-A14C-2307E508CA69}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{CC460692-83C7-4B8D-B15F-951DE6D34AC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{020D94D6-15B9-499E-84CE-F8A95FB364ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Search", "Search", "{9F9E5437-88F0-45D6-95AB-A9EA403004C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorHybridSearch.Search", "src\VectorHybridSearchAPI\Modules\Search\VectorHybridSearch.Search\VectorHybridSearch.Search.csproj", "{F31C0DBE-76F1-4F2B-8BB5-A5318F168BBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorHybridSearch.Shared.Contracts", "src\VectorHybridSearchAPI\Shared\VectorHybridSearch.Shared.Contracts\VectorHybridSearch.Shared.Contracts.csproj", "{6A79BD04-F4BE-431D-98D0-B506F5CE9B33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataIngestion", "DataIngestion", "{382C9A05-5CAB-450A-83D8-D497C34A0288}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorHybridSearch.DataIngestion", "src\VectorHybridSearchAPI\Modules\DataIngestion\VectorHybridSearch.DataIngestion\VectorHybridSearch.DataIngestion.csproj", "{17649194-C321-4C4F-BB2D-F13DEC618AF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorHybridSearch.Shared.Module", "src\VectorHybridSearchAPI\Shared\VectorHybridSearch.Shared.Module\VectorHybridSearch.Shared.Module.csproj", "{A31FEC6F-AC8E-4F0F-B577-6D3D9C67838E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorHybridSearch.Shared.Api", "src\VectorHybridSearchAPI\Shared\VectorHybridSearch.Shared.Api\VectorHybridSearch.Shared.Api.csproj", "{42A1C169-9C7A-4779-A564-06072CA2759F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorHybridSearch.Shared.Core", "src\VectorHybridSearchAPI\Shared\VectorHybridSearch.Shared.Core\VectorHybridSearch.Shared.Core.csproj", "{23CC97CA-3431-4224-B54D-2D23301FD461}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E1E4977D-5948-483C-8929-A881E55C1E58} = {74AB88C7-C045-463F-8F42-C856D6503E93}
+		{68BD9AB8-9DC9-4393-968D-1BD1BA4CADC3} = {E1E4977D-5948-483C-8929-A881E55C1E58}
+		{CC460692-83C7-4B8D-B15F-951DE6D34AC6} = {E1E4977D-5948-483C-8929-A881E55C1E58}
+		{020D94D6-15B9-499E-84CE-F8A95FB364ED} = {E1E4977D-5948-483C-8929-A881E55C1E58}
+		{9F9E5437-88F0-45D6-95AB-A9EA403004C1} = {CC460692-83C7-4B8D-B15F-951DE6D34AC6}
+		{F31C0DBE-76F1-4F2B-8BB5-A5318F168BBD} = {9F9E5437-88F0-45D6-95AB-A9EA403004C1}
+		{6A79BD04-F4BE-431D-98D0-B506F5CE9B33} = {020D94D6-15B9-499E-84CE-F8A95FB364ED}
+		{382C9A05-5CAB-450A-83D8-D497C34A0288} = {CC460692-83C7-4B8D-B15F-951DE6D34AC6}
+		{17649194-C321-4C4F-BB2D-F13DEC618AF2} = {382C9A05-5CAB-450A-83D8-D497C34A0288}
+		{A31FEC6F-AC8E-4F0F-B577-6D3D9C67838E} = {020D94D6-15B9-499E-84CE-F8A95FB364ED}
+		{42A1C169-9C7A-4779-A564-06072CA2759F} = {020D94D6-15B9-499E-84CE-F8A95FB364ED}
+		{23CC97CA-3431-4224-B54D-2D23301FD461} = {020D94D6-15B9-499E-84CE-F8A95FB364ED}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68BD9AB8-9DC9-4393-968D-1BD1BA4CADC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68BD9AB8-9DC9-4393-968D-1BD1BA4CADC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68BD9AB8-9DC9-4393-968D-1BD1BA4CADC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68BD9AB8-9DC9-4393-968D-1BD1BA4CADC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F31C0DBE-76F1-4F2B-8BB5-A5318F168BBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F31C0DBE-76F1-4F2B-8BB5-A5318F168BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F31C0DBE-76F1-4F2B-8BB5-A5318F168BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F31C0DBE-76F1-4F2B-8BB5-A5318F168BBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A79BD04-F4BE-431D-98D0-B506F5CE9B33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A79BD04-F4BE-431D-98D0-B506F5CE9B33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A79BD04-F4BE-431D-98D0-B506F5CE9B33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A79BD04-F4BE-431D-98D0-B506F5CE9B33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17649194-C321-4C4F-BB2D-F13DEC618AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17649194-C321-4C4F-BB2D-F13DEC618AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17649194-C321-4C4F-BB2D-F13DEC618AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17649194-C321-4C4F-BB2D-F13DEC618AF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A31FEC6F-AC8E-4F0F-B577-6D3D9C67838E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A31FEC6F-AC8E-4F0F-B577-6D3D9C67838E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A31FEC6F-AC8E-4F0F-B577-6D3D9C67838E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A31FEC6F-AC8E-4F0F-B577-6D3D9C67838E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42A1C169-9C7A-4779-A564-06072CA2759F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42A1C169-9C7A-4779-A564-06072CA2759F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42A1C169-9C7A-4779-A564-06072CA2759F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42A1C169-9C7A-4779-A564-06072CA2759F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23CC97CA-3431-4224-B54D-2D23301FD461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23CC97CA-3431-4224-B54D-2D23301FD461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23CC97CA-3431-4224-B54D-2D23301FD461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23CC97CA-3431-4224-B54D-2D23301FD461}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
