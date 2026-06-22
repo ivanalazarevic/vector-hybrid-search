@@ -1,4 +1,6 @@
-﻿namespace VectorHybridSearch.Shared.Api.Endpoints;
+﻿using Microsoft.AspNetCore.Routing;
+
+namespace VectorHybridSearch.Shared.Api.Endpoints;
 
 public static class Extension
 {
@@ -15,6 +17,5 @@ public static class Extension
             .ForEach(e => e!.AddRoutes(app));
 
         return app;
-
     }
 }

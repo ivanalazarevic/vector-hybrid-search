@@ -1,10 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-  </PropertyGroup>
-    <ItemGroup>
-      <ProjectReference Include="..\..\..\Shared\VectorHybridSearch.Shared.Api\VectorHybridSearch.Shared.Api.csproj" />
-      <ProjectReference Include="..\..\..\Shared\VectorHybridSearch.Shared.Module\VectorHybridSearch.Shared.Module.csproj" />
-    </ItemGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Embeddings\VectorHybridSearch.Embeddings\VectorHybridSearch.Embeddings.csproj" />
+    <ProjectReference Include="..\..\..\Shared\VectorHybridSearch.Shared.Api\VectorHybridSearch.Shared.Api.csproj" />
+    <ProjectReference Include="..\..\..\Shared\VectorHybridSearch.Shared.Contracts\VectorHybridSearch.Shared.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Shared\VectorHybridSearch.Shared.Module\VectorHybridSearch.Shared.Module.csproj" />
+  </ItemGroup>
 
 </Project>

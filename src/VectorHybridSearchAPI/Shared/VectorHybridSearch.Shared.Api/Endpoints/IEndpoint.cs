@@ -1,4 +1,6 @@
-﻿namespace VectorHybridSearch.Shared.Api.Endpoints;
+using Microsoft.AspNetCore.Routing;
+
+namespace VectorHybridSearch.Shared.Api.Endpoints;
 
 public interface IEndpoint
 {
