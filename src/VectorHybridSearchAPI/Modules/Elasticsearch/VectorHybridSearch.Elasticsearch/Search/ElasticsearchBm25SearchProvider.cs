@@ -27,6 +27,9 @@ public sealed class ElasticsearchBm25SearchProvider(
         var requestBody = new {
             size = request.TopK,
             query = BuildQuery(request),
+            collapse = new {
+                field = "articleId"
+            },
             highlight = new {
                 fields = new Dictionary<string, object> {
                     ["chunkText"] = new {
@@ -62,35 +65,66 @@ public sealed class ElasticsearchBm25SearchProvider(
                 Metadata: new Dictionary<string, string> {
                     ["index"] = options.IndexName,
                     ["mode"] = nameof(SearchMode.Bm25),
-                    ["engine"] = nameof(SearchEngine.Elasticsearch)
+                    ["engine"] = nameof(SearchEngine.Elasticsearch),
+                    ["resultGrouping"] = "collapse:articleId"
                 }));
     }
 
     private static object BuildQuery(SearchRequest request)
     {
+        var textQuery = BuildBoostedTextQuery(request.Query);
+
+        var filters = BuildFilters(request.Filters);
+        if (filters.Count == 0) {
+            return textQuery;
+        }
+
+        return new {
+            @bool = new {
+                must = new object[] {
+                    textQuery
+                },
+                filter = filters
+            }
+        };
+    }
+
+    private static object BuildBoostedTextQuery(string query)
+    {
         var keywordQuery = new {
             multi_match = new {
-                query = request.Query,
+                query,
                 fields = new[] {
                     "chunkText^3",
-                    "title^2",
+                    "title^4",
                     "summary"
                 },
                 type = "best_fields"
             }
         };
 
-        var filters = BuildFilters(request.Filters);
-        if (filters.Count == 0) {
-            return keywordQuery;
-        }
-
         return new {
             @bool = new {
-                must = new object[] {
-                    keywordQuery
+                should = new object[] {
+                    keywordQuery,
+                    new {
+                        match_phrase = new Dictionary<string, object> {
+                            ["title"] = new {
+                                query,
+                                boost = 8
+                            }
+                        }
+                    },
+                    new {
+                        match_phrase = new Dictionary<string, object> {
+                            ["chunkText"] = new {
+                                query,
+                                boost = 5
+                            }
+                        }
+                    }
                 },
-                filter = filters
+                minimum_should_match = 1
             }
         };
     }

@@ -41,6 +41,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elasticsearch", "Elasticsea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorHybridSearch.Elasticsearch", "src\VectorHybridSearchAPI\Modules\Elasticsearch\VectorHybridSearch.Elasticsearch\VectorHybridSearch.Elasticsearch.csproj", "{83ADA246-7AF9-4C12-AF64-0428909EDC65}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDb", "MongoDb", "{B19D17A4-9C90-9FAC-A880-334DDBE65FF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorHybridSearch.MongoDb", "src\VectorHybridSearchAPI\Modules\MongoDb\VectorHybridSearch.MongoDb\VectorHybridSearch.MongoDb.csproj", "{ADE99C62-BA76-4EAA-84C2-23781E8EF431}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,6 +163,18 @@ Global
 		{83ADA246-7AF9-4C12-AF64-0428909EDC65}.Release|x64.Build.0 = Release|Any CPU
 		{83ADA246-7AF9-4C12-AF64-0428909EDC65}.Release|x86.ActiveCfg = Release|Any CPU
 		{83ADA246-7AF9-4C12-AF64-0428909EDC65}.Release|x86.Build.0 = Release|Any CPU
+		{ADE99C62-BA76-4EAA-84C2-23781E8EF431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADE99C62-BA76-4EAA-84C2-23781E8EF431}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADE99C62-BA76-4EAA-84C2-23781E8EF431}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ADE99C62-BA76-4EAA-84C2-23781E8EF431}.Debug|x64.Build.0 = Debug|Any CPU
+		{ADE99C62-BA76-4EAA-84C2-23781E8EF431}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ADE99C62-BA76-4EAA-84C2-23781E8EF431}.Debug|x86.Build.0 = Debug|Any CPU
+		{ADE99C62-BA76-4EAA-84C2-23781E8EF431}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADE99C62-BA76-4EAA-84C2-23781E8EF431}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE99C62-BA76-4EAA-84C2-23781E8EF431}.Release|x64.ActiveCfg = Release|Any CPU
+		{ADE99C62-BA76-4EAA-84C2-23781E8EF431}.Release|x64.Build.0 = Release|Any CPU
+		{ADE99C62-BA76-4EAA-84C2-23781E8EF431}.Release|x86.ActiveCfg = Release|Any CPU
+		{ADE99C62-BA76-4EAA-84C2-23781E8EF431}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -180,5 +196,7 @@ Global
 		{2DB661D2-FBD2-415D-A012-C6A8B90BA0DB} = {0B9C94BD-9D8F-354E-B53A-5F60D334D666}
 		{E9D957B7-DB4F-CB78-D05A-54DD34D52096} = {CC460692-83C7-4B8D-B15F-951DE6D34AC6}
 		{83ADA246-7AF9-4C12-AF64-0428909EDC65} = {E9D957B7-DB4F-CB78-D05A-54DD34D52096}
+		{B19D17A4-9C90-9FAC-A880-334DDBE65FF5} = {CC460692-83C7-4B8D-B15F-951DE6D34AC6}
+		{ADE99C62-BA76-4EAA-84C2-23781E8EF431} = {B19D17A4-9C90-9FAC-A880-334DDBE65FF5}
 	EndGlobalSection
 EndGlobal

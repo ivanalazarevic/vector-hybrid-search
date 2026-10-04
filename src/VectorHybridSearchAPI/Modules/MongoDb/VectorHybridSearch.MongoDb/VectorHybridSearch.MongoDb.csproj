@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DataIngestion\VectorHybridSearch.DataIngestion\VectorHybridSearch.DataIngestion.csproj" />
+    <ProjectReference Include="..\..\Embeddings\VectorHybridSearch.Embeddings\VectorHybridSearch.Embeddings.csproj" />
+    <ProjectReference Include="..\..\Search\VectorHybridSearch.Search\VectorHybridSearch.Search.csproj" />
+    <ProjectReference Include="..\..\..\Shared\VectorHybridSearch.Shared.Api\VectorHybridSearch.Shared.Api.csproj" />
+    <ProjectReference Include="..\..\..\Shared\VectorHybridSearch.Shared.Contracts\VectorHybridSearch.Shared.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Shared\VectorHybridSearch.Shared.Module\VectorHybridSearch.Shared.Module.csproj" />
+  </ItemGroup>
+
+</Project>

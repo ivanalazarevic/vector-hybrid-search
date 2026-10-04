@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
@@ -10,5 +10,6 @@
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.4" />
+    <PackageVersion Include="MongoDB.Driver" Version="3.10.0" />
   </ItemGroup>
 </Project>

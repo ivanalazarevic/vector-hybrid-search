@@ -33,7 +33,7 @@ public sealed class SearchEndpoint : IEndpoint
 
             if (request.Engine == SearchEngine.Both) {
                 return Results.BadRequest(new {
-                    Error = "SearchEngine.Both is not implemented yet. Choose Elasticsearch for now."
+                    Error = "SearchEngine.Both is not implemented yet. Choose Elasticsearch or MongoDbAtlas."
                 });
             }
 

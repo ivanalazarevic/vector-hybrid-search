@@ -28,25 +28,30 @@ public sealed class ElasticsearchVectorSearchProvider(
     {
         var queryEmbedding = await embeddingService.GenerateAsync(request.Query, cancellationToken);
         var filters = BuildFilters(request.Filters);
+        var candidateK = Math.Max(request.TopK * 10, 100);
+        var numCandidates = Math.Max(candidateK * 10, 1000);
 
         object knn = filters.Count == 0
             ? new {
                 field = "embedding",
                 query_vector = queryEmbedding.Vector,
-                k = request.TopK,
-                num_candidates = Math.Max(request.TopK * 10, 100)
+                k = candidateK,
+                num_candidates = numCandidates
             }
             : new {
                 field = "embedding",
                 query_vector = queryEmbedding.Vector,
-                k = request.TopK,
-                num_candidates = Math.Max(request.TopK * 10, 100),
+                k = candidateK,
+                num_candidates = numCandidates,
                 filter = filters
             };
 
         var requestBody = new {
             knn,
             size = request.TopK,
+            collapse = new {
+                field = "articleId"
+            },
             _source = new[] {
                 "articleId",
                 "title",
@@ -84,7 +89,9 @@ public sealed class ElasticsearchVectorSearchProvider(
                     ["engine"] = nameof(SearchEngine.Elasticsearch),
                     ["embeddingModel"] = queryEmbedding.Model,
                     ["embeddingDimensions"] = queryEmbedding.Dimensions.ToString(CultureInfo.InvariantCulture),
-                    ["numCandidates"] = Math.Max(request.TopK * 10, 100).ToString(CultureInfo.InvariantCulture)
+                    ["candidateK"] = candidateK.ToString(CultureInfo.InvariantCulture),
+                    ["numCandidates"] = numCandidates.ToString(CultureInfo.InvariantCulture),
+                    ["resultGrouping"] = "collapse:articleId"
                 }));
     }
 

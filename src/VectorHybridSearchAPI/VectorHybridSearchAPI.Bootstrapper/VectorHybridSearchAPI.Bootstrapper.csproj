@@ -15,6 +15,7 @@
       <ProjectReference Include="..\Modules\DataIngestion\VectorHybridSearch.DataIngestion\VectorHybridSearch.DataIngestion.csproj" />
       <ProjectReference Include="..\Modules\Elasticsearch\VectorHybridSearch.Elasticsearch\VectorHybridSearch.Elasticsearch.csproj" />
       <ProjectReference Include="..\Modules\Embeddings\VectorHybridSearch.Embeddings\VectorHybridSearch.Embeddings.csproj" />
+      <ProjectReference Include="..\Modules\MongoDb\VectorHybridSearch.MongoDb\VectorHybridSearch.MongoDb.csproj" />
       <ProjectReference Include="..\Modules\Search\VectorHybridSearch.Search\VectorHybridSearch.Search.csproj" />
       <ProjectReference Include="..\Shared\VectorHybridSearch.Shared.Api\VectorHybridSearch.Shared.Api.csproj" />
       <ProjectReference Include="..\Shared\VectorHybridSearch.Shared.Contracts\VectorHybridSearch.Shared.Contracts.csproj" />
