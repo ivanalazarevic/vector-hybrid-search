@@ -1,24 +1,21 @@
 using System.Net;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using VectorHybridSearch.DataIngestion.Articles.Domain;
 using VectorHybridSearch.DataIngestion.Articles.Indexing;
 using VectorHybridSearch.DataIngestion.Articles.Repositories;
+using VectorHybridSearch.Embeddings.Services;
 
 namespace VectorHybridSearch.Elasticsearch.Indexing;
 
 public sealed class ElasticsearchIndexingService(
     HttpClient httpClient,
     ElasticsearchOptions options,
+    IEmbeddingService embeddingService,
     IArticleRepository articleRepository,
     IArticleChunkRepository articleChunkRepository,
     IArticleChunkEmbeddingRepository articleChunkEmbeddingRepository) : IElasticsearchIndexingService, IArticleSearchIndexWriter
 {
-    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web) {
-        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-    };
-
     public string Source => "Elasticsearch";
 
     public async Task<ElasticsearchIndexingResult> RebuildIndexAsync(CancellationToken cancellationToken)
@@ -101,18 +98,18 @@ public sealed class ElasticsearchIndexingService(
 
     private async Task DeleteIndexIfExistsAsync(CancellationToken cancellationToken)
     {
-        using var response = await httpClient.DeleteAsync(EscapeIndexName(options.IndexName), cancellationToken);
+        using var response = await httpClient.DeleteAsync(ElasticsearchHttp.EscapeIndexName(options.IndexName), cancellationToken);
 
         if (response.StatusCode == HttpStatusCode.NotFound) {
             return;
         }
 
-        await EnsureSuccessAsync(response, "delete Elasticsearch index", cancellationToken);
+        await ElasticsearchHttp.EnsureSuccessAsync(response, "delete Elasticsearch index", cancellationToken);
     }
 
     private async Task EnsureIndexExistsAsync(CancellationToken cancellationToken)
     {
-        using var request = new HttpRequestMessage(HttpMethod.Head, EscapeIndexName(options.IndexName));
+        using var request = new HttpRequestMessage(HttpMethod.Head, ElasticsearchHttp.EscapeIndexName(options.IndexName));
         using var response = await httpClient.SendAsync(request, cancellationToken);
 
         if (response.IsSuccessStatusCode) {
@@ -124,7 +121,7 @@ public sealed class ElasticsearchIndexingService(
             return;
         }
 
-        await EnsureSuccessAsync(response, "check Elasticsearch index", cancellationToken);
+        await ElasticsearchHttp.EnsureSuccessAsync(response, "check Elasticsearch index", cancellationToken);
     }
 
     private async Task CreateIndexAsync(CancellationToken cancellationToken)
@@ -154,7 +151,7 @@ public sealed class ElasticsearchIndexingService(
                     ["embeddingDimensions"] = new { type = "integer" },
                     ["embedding"] = new {
                         type = "dense_vector",
-                        dims = 384,
+                        dims = embeddingService.GetModelInfo().Dimensions,
                         index = true,
                         similarity = "cosine"
                     }
@@ -162,10 +159,10 @@ public sealed class ElasticsearchIndexingService(
             }
         };
 
-        using var content = CreateJsonContent(requestBody);
-        using var response = await httpClient.PutAsync(EscapeIndexName(options.IndexName), content, cancellationToken);
+        using var content = ElasticsearchHttp.CreateJsonContent(requestBody);
+        using var response = await httpClient.PutAsync(ElasticsearchHttp.EscapeIndexName(options.IndexName), content, cancellationToken);
 
-        await EnsureSuccessAsync(response, "create Elasticsearch index", cancellationToken);
+        await ElasticsearchHttp.EnsureSuccessAsync(response, "create Elasticsearch index", cancellationToken);
     }
 
     private async Task BulkIndexAsync(
@@ -184,13 +181,13 @@ public sealed class ElasticsearchIndexingService(
                 }
             };
 
-            bulkPayload.AppendLine(JsonSerializer.Serialize(action, JsonOptions));
-            bulkPayload.AppendLine(JsonSerializer.Serialize(document, JsonOptions));
+            bulkPayload.AppendLine(JsonSerializer.Serialize(action, ElasticsearchHttp.JsonOptions));
+            bulkPayload.AppendLine(JsonSerializer.Serialize(document, ElasticsearchHttp.JsonOptions));
         }
 
         using var content = new StringContent(bulkPayload.ToString(), Encoding.UTF8, "application/x-ndjson");
         using var response = await httpClient.PostAsync("_bulk", content, cancellationToken);
-        await EnsureSuccessAsync(response, "bulk index Elasticsearch documents", cancellationToken);
+        await ElasticsearchHttp.EnsureSuccessAsync(response, "bulk index Elasticsearch documents", cancellationToken);
 
         var responseBody = await response.Content.ReadAsStringAsync(cancellationToken);
         using var responseJson = JsonDocument.Parse(responseBody);
@@ -248,33 +245,6 @@ public sealed class ElasticsearchIndexingService(
             EmbeddingModel: embedding.Model,
             EmbeddingDimensions: embedding.Dimensions,
             Embedding: embedding.Vector);
-    }
-
-    private static StringContent CreateJsonContent(object value)
-    {
-        return new StringContent(
-            JsonSerializer.Serialize(value, JsonOptions),
-            Encoding.UTF8,
-            "application/json");
-    }
-
-    private static async Task EnsureSuccessAsync(
-        HttpResponseMessage response,
-        string operation,
-        CancellationToken cancellationToken)
-    {
-        if (response.IsSuccessStatusCode) {
-            return;
-        }
-
-        var body = await response.Content.ReadAsStringAsync(cancellationToken);
-        throw new InvalidOperationException(
-            $"Failed to {operation}. Status {(int)response.StatusCode} {response.ReasonPhrase}. Response: {body}");
-    }
-
-    private static string EscapeIndexName(string indexName)
-    {
-        return Uri.EscapeDataString(indexName);
     }
 
     private sealed record BuildDocumentsResult(

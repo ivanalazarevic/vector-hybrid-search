@@ -6,4 +6,5 @@ public sealed record SearchRequest(
     SearchMode Mode = SearchMode.Hybrid,
     int TopK = 10,
     SearchFilters? Filters = null,
-    bool IncludeDiagnostics = false);
+    bool IncludeDiagnostics = false,
+    HybridOptions? Hybrid = null);

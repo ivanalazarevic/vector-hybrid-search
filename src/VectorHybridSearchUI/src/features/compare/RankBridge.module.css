@@ -1,0 +1,69 @@
+.bridge {
+  composes: card from "../../components/controls.module.css";
+  position: sticky;
+  top: 4.75rem; /* clears the sticky header */
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  padding: var(--s3);
+}
+
+.axes {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--s3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.axis {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  max-width: 12.5rem;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.link {
+  stroke: var(--ink);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  transition: stroke-width var(--ease);
+}
+
+.link:hover {
+  stroke-width: 4;
+}
+
+.markShared {
+  fill: var(--engine);
+  stroke: var(--engine);
+  stroke-width: 1.5;
+}
+
+.markUnique {
+  fill: var(--surface);
+  stroke: var(--engine);
+  stroke-width: 1.5;
+}
+
+.rank {
+  fill: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  dominant-baseline: central;
+}
+
+.caption {
+  padding-top: var(--s2);
+  border-top: var(--rule-width) solid var(--rule);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}

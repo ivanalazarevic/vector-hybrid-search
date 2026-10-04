@@ -1,0 +1,19 @@
+.latency {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--s2);
+}
+
+.total {
+  font-size: var(--text-lg);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.split {
+  font-size: var(--text-sm);
+  color: var(--ink-3);
+  white-space: nowrap;
+}

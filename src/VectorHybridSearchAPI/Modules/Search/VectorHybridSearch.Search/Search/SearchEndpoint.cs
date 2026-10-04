@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using VectorHybridSearch.Search.Fusion;
 using VectorHybridSearch.Search.Providers;
 using VectorHybridSearch.Shared.Api.Endpoints;
 using VectorHybridSearch.Shared.Contracts.Search;
@@ -34,6 +35,12 @@ public sealed class SearchEndpoint : IEndpoint
             if (request.Engine == SearchEngine.Both) {
                 return Results.BadRequest(new {
                     Error = "SearchEngine.Both is not implemented yet. Choose Elasticsearch or MongoDbAtlas."
+                });
+            }
+
+            if (request.Mode == SearchMode.Hybrid && HybridSearch.Validate(HybridSearch.GetOptions(request)) is { } hybridError) {
+                return Results.BadRequest(new {
+                    Error = hybridError
                 });
             }
 

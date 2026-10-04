@@ -1,0 +1,19 @@
+.snippet {
+  max-width: var(--measure);
+  font-size: var(--text-md);
+  line-height: var(--leading-read);
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+/* Query-term highlight: marker yellow plus weight, so it survives a greyscale print. */
+.snippet em {
+  padding: 0.1em 0.3em;
+  border-radius: var(--radius-mark);
+  background: var(--mark);
+  color: var(--ink);
+  font-style: normal;
+  font-weight: 600;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}

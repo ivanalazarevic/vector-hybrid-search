@@ -1,0 +1,107 @@
+.card {
+  --rank-size: 2.25rem;
+  --title-size: var(--text-lg);
+  display: grid;
+  grid-template-columns: var(--rank-size) minmax(0, 1fr) auto;
+  column-gap: var(--s4);
+  padding: var(--s4) var(--s5);
+  border-top: var(--rule-width) solid var(--rule);
+  transition: background var(--ease);
+}
+
+.card:hover {
+  background: #fafbfc;
+}
+
+.cardCompact {
+  composes: card;
+  --rank-size: 1.875rem;
+  --title-size: var(--text-md);
+  column-gap: var(--s3);
+  padding: var(--s4);
+}
+
+/* The rank sits in a fixed square chip, so one- and two-digit ranks line up down the list. */
+.rank {
+  display: grid;
+  place-items: center;
+  width: var(--rank-size);
+  height: var(--rank-size);
+  border-radius: var(--radius-control);
+  background: var(--surface-sunk);
+  font-size: var(--text-md);
+  font-weight: 700;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  min-width: 0;
+}
+
+.title {
+  max-width: var(--measure);
+  font-size: var(--title-size);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s1) var(--s3);
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+
+.category {
+  padding: 0.05em 0.65em;
+  border-radius: var(--radius-pill);
+  background: var(--surface-sunk);
+  box-shadow: inset 0 0 0 var(--rule-width) var(--rule);
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.contribution,
+.contributionMissing {
+  padding: 0.05em 0.65em;
+  border-radius: var(--radius-pill);
+  box-shadow: inset 0 0 0 var(--rule-width) var(--rule-strong);
+}
+
+.contribution strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.contributionMissing {
+  box-shadow: inset 0 0 0 var(--rule-width) var(--rule);
+  color: var(--ink-3);
+}
+
+.articleId {
+  color: var(--ink-3);
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 4.5rem;
+}
+
+.scoreLabel {
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+.scoreValue {
+  font-size: var(--text-lg);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}

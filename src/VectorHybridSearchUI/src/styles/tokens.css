@@ -1,0 +1,82 @@
+/*
+ * Design tokens, set with the frontend-design skill.
+ *
+ * Direction: a calm, current product UI. One sans family (Geist) with tabular figures, white
+ * rounded surfaces on a cool grey canvas, hairline borders instead of heavy rules, and soft
+ * elevation only where a surface is a container (form, result list, engine column, chart).
+ *
+ * Colour rules:
+ *  - The two engine colours are reserved for the engines. Nothing else may use them.
+ *  - Each engine also has a shape (Elasticsearch = square, MongoDB = circle) and a chart
+ *    fill (solid vs hatched), so the pair stays readable in greyscale print.
+ *  - Query-term highlights use the marker yellow, which is used for nothing else.
+ *  - Actions and selection use ink, not a brand accent.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces and ink */
+  --paper: #f5f6f8;
+  --surface: #ffffff;
+  --surface-sunk: #f1f3f6;
+  --ink: #0f1728;
+  --ink-2: #475467;
+  --ink-3: #667085;
+  --rule: #e4e7ec;
+  --rule-strong: #cfd4dc;
+
+  /* Engines */
+  --es: #4f46e5;
+  --es-tint: #eef0ff;
+  --mongo: #047857;
+  --mongo-tint: #e6f6ee;
+
+  /* Signals */
+  --mark: #fde047;
+  --danger: #d92d20;
+  --danger-tint: #fef3f2;
+  --danger-rule: #fecdca;
+  --notice-tint: #fffaeb;
+  --notice-rule: #fedf89;
+
+  /* Type */
+  --font-ui: "Geist Variable", "Segoe UI", system-ui, sans-serif;
+
+  --text-xs: 0.8125rem; /* 13px: the floor, used for column heads and captions only */
+  --text-sm: 0.9375rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.875rem;
+
+  --leading-tight: 1.2;
+  --leading-ui: 1.45;
+  --leading-read: 1.6;
+
+  /* Space, 4px base */
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.75rem;
+  --s4: 1rem;
+  --s5: 1.5rem;
+  --s6: 2rem;
+  --s7: 3rem;
+
+  /* Shape */
+  --radius-mark: 4px;
+  --radius-control: 10px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --rule-width: 1px;
+
+  /* Elevation: one quiet level for containers, one raised level for things that float */
+  --shadow-card: 0 1px 2px rgb(16 24 40 / 0.04), 0 1px 3px rgb(16 24 40 / 0.06);
+  --shadow-raised: 0 4px 8px -2px rgb(16 24 40 / 0.08), 0 12px 32px -8px rgb(16 24 40 / 0.14);
+
+  --page-max: 80rem;
+  --measure: 76ch;
+
+  --focus-ring: 0 0 0 2px var(--surface), 0 0 0 4px var(--ink);
+  --ease: 140ms ease;
+}

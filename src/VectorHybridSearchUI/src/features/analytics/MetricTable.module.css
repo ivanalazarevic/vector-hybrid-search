@@ -1,0 +1,137 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s3) var(--s5);
+}
+
+.copy {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  margin-left: auto;
+}
+
+.copyStatus {
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+
+.scroll {
+  composes: card from "../../components/controls.module.css";
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-md);
+}
+
+.table th,
+.table td {
+  padding: var(--s3) var(--s4);
+  white-space: nowrap;
+}
+
+.table thead th {
+  padding: 0;
+  border-bottom: var(--rule-width) solid var(--rule);
+  background: var(--surface-sunk);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.table tbody tr + tr > * {
+  border-top: var(--rule-width) solid var(--rule);
+}
+
+.table tbody tr > * {
+  transition: background var(--ease);
+}
+
+.table tbody tr:hover > * {
+  background: #fafbfc;
+}
+
+/* First and last cells line up with the card's inner padding. */
+.table tr > :first-child,
+.table thead tr > :first-child .sort {
+  padding-left: var(--s5);
+}
+
+.table tr > :last-child,
+.table thead tr > :last-child .sort {
+  padding-right: var(--s5);
+}
+
+.table thead tr > :first-child,
+.table thead tr > :last-child {
+  padding: 0;
+}
+
+.textHead {
+  text-align: left;
+}
+
+/* The one plain (unsortable) head needs the padding the sort buttons carry. */
+.table thead .textHead:not(:has(button)) {
+  padding: var(--s3) var(--s4);
+}
+
+.numberHead {
+  text-align: right;
+}
+
+.sort {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s1);
+  width: 100%;
+  padding: var(--s3) var(--s4);
+  border: 0;
+  background: none;
+  font-weight: inherit;
+  transition: color var(--ease);
+}
+
+.numberHead .sort {
+  justify-content: flex-end;
+}
+
+.sort:hover {
+  color: var(--ink);
+}
+
+.arrow {
+  width: 0.8em;
+  font-size: 0.75em;
+  color: var(--ink);
+}
+
+.engine {
+  text-align: left;
+  font-weight: 400;
+}
+
+.number {
+  text-align: right;
+}
+
+.best {
+  composes: number;
+  font-weight: 700;
+}
+
+.note {
+  font-size: var(--text-sm);
+  color: var(--ink-3);
+}

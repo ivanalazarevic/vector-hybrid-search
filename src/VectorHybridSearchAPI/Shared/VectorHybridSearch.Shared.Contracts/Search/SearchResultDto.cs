@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace VectorHybridSearch.Shared.Contracts.Search;
 
 public sealed record SearchResultDto(
@@ -7,4 +9,6 @@ public sealed record SearchResultDto(
     double Score,
     int Rank,
     string? Source,
-    string? Category);
+    string? Category,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] int? Bm25Rank = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] int? VectorRank = null);

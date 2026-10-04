@@ -3,12 +3,14 @@ using MongoDB.Driver;
 using VectorHybridSearch.DataIngestion.Articles.Domain;
 using VectorHybridSearch.DataIngestion.Articles.Indexing;
 using VectorHybridSearch.DataIngestion.Articles.Repositories;
+using VectorHybridSearch.Embeddings.Services;
 
 namespace VectorHybridSearch.MongoDb.Indexing;
 
 public sealed class MongoDbIndexingService(
     IMongoClient mongoClient,
     MongoDbOptions options,
+    IEmbeddingService embeddingService,
     IArticleRepository articleRepository,
     IArticleChunkRepository articleChunkRepository,
     IArticleChunkEmbeddingRepository articleChunkEmbeddingRepository) : IMongoDbIndexingService, IArticleSearchIndexWriter
@@ -233,7 +235,7 @@ public sealed class MongoDbIndexingService(
                 new BsonDocument {
                     { "type", "vector" },
                     { "path", "embedding" },
-                    { "numDimensions", options.VectorDimensions },
+                    { "numDimensions", embeddingService.GetModelInfo().Dimensions },
                     { "similarity", "cosine" }
                 },
                 CreateVectorFilterMapping("category"),

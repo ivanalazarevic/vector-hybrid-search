@@ -1,0 +1,35 @@
+/* Shared page skeleton for the three feature pages. */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s5);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+}
+
+.heading {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: var(--leading-tight);
+}
+
+.lede {
+  color: var(--ink-2);
+  font-size: var(--text-md);
+}
+
+.status {
+  color: var(--ink-2);
+}
+
+/* Results that belong to the previous query while the next one loads. */
+.stale {
+  opacity: 0.5;
+  transition: opacity var(--ease);
+}

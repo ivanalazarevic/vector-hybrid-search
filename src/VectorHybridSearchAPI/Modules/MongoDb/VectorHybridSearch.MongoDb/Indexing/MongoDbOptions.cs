@@ -5,5 +5,4 @@ public sealed record MongoDbOptions(
     string DatabaseName,
     string CollectionName,
     string SearchIndexName,
-    string VectorSearchIndexName,
-    int VectorDimensions);
+    string VectorSearchIndexName);

@@ -1,0 +1,78 @@
+.form {
+  composes: card from "./controls.module.css";
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+  padding: var(--s5);
+}
+
+.queryRow {
+  display: flex;
+  gap: var(--s3);
+}
+
+.queryBox {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.queryIcon {
+  position: absolute;
+  top: 50%;
+  left: var(--s4);
+  width: 1.25rem;
+  height: 1.25rem;
+  transform: translateY(-50%);
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 2;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+/* Two classes deep so these win over the shared .input / .button rules whatever order the modules load in. */
+.queryBox .query {
+  width: 100%;
+  height: 3.25rem;
+  padding-left: 3rem;
+  border-radius: 14px;
+  font-size: var(--text-lg);
+}
+
+/* Chrome draws its own clear button on type=search; keep the field's shape consistent. */
+.queryBox .query::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+.queryRow .submit {
+  height: 3.25rem;
+  padding: 0 var(--s6);
+  border-radius: 14px;
+  font-size: var(--text-md);
+}
+
+.optionsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--s4) var(--s5);
+}
+
+.optionsRow .topK {
+  width: 5.5rem;
+}
+
+.optionsRow .filter {
+  width: 11rem;
+}
+
+@media (max-width: 40rem) {
+  .queryRow {
+    flex-direction: column;
+  }
+
+  .queryBox {
+    flex: none;
+  }
+}

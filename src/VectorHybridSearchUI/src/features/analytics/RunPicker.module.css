@@ -1,0 +1,83 @@
+.picker {
+  composes: card from "../../components/controls.module.css";
+  overflow: hidden;
+}
+
+/* A fieldset legend cannot be laid out as a normal block inside a bordered fieldset, so it floats. */
+.legend {
+  float: left;
+  width: 100%;
+  padding: var(--s4) var(--s5) var(--s3);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.table {
+  /* Positioned so the visually hidden labels inside scroll with the rows instead of widening the page. */
+  position: relative;
+  clear: both;
+  display: grid;
+  grid-template-columns: auto auto minmax(12rem, 1.4fr) minmax(12rem, 1fr) auto auto;
+  overflow-x: auto;
+}
+
+.head,
+.row {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: center;
+  column-gap: var(--s5);
+  padding: var(--s3) var(--s5);
+}
+
+.head {
+  padding-top: var(--s2);
+  padding-bottom: var(--s2);
+  border-top: var(--rule-width) solid var(--rule);
+  background: var(--surface-sunk);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.row {
+  border-top: var(--rule-width) solid var(--rule);
+  cursor: pointer;
+  transition: background var(--ease);
+}
+
+.row:hover {
+  background: #fafbfc;
+}
+
+.rowSelected {
+  composes: row;
+  background: var(--surface-sunk);
+  font-weight: 600;
+}
+
+.rowSelected:hover {
+  background: var(--surface-sunk);
+}
+
+.radio {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+  accent-color: var(--ink);
+}
+
+.started {
+  white-space: nowrap;
+}
+
+.dimensions {
+  color: var(--ink-3);
+  font-weight: 400;
+}
+
+.number {
+  text-align: right;
+}

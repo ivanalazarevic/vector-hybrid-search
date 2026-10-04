@@ -1,0 +1,36 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: var(--s4);
+}
+
+.card {
+  composes: card from "../../components/controls.module.css";
+  overflow: hidden;
+}
+
+.name {
+  padding: var(--s3) var(--s5);
+  background: var(--engine-tint);
+  box-shadow: inset 0 3px 0 var(--engine);
+  font-size: inherit;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3) var(--s7);
+  padding: var(--s4) var(--s5);
+}
+
+.statName {
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+
+.statValue {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: var(--leading-tight);
+}

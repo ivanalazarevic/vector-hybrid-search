@@ -22,8 +22,7 @@ public sealed class MongoDbModule : IModule
                 DatabaseName: section["DatabaseName"] ?? "vector_hybrid_search",
                 CollectionName: section["CollectionName"] ?? "article_chunks",
                 SearchIndexName: section["SearchIndexName"] ?? "article_chunks_text",
-                VectorSearchIndexName: section["VectorSearchIndexName"] ?? "article_chunks_vector",
-                VectorDimensions: section.GetValue("VectorDimensions", 384));
+                VectorSearchIndexName: section["VectorSearchIndexName"] ?? "article_chunks_vector");
         });
 
         services.AddSingleton<IMongoClient>(sp => {
@@ -34,7 +33,11 @@ public sealed class MongoDbModule : IModule
         services.AddScoped<MongoDbIndexingService>();
         services.AddScoped<IMongoDbIndexingService>(sp => sp.GetRequiredService<MongoDbIndexingService>());
         services.AddScoped<IArticleSearchIndexWriter>(sp => sp.GetRequiredService<MongoDbIndexingService>());
-        services.AddScoped<ISearchProvider, MongoDbBm25SearchProvider>();
-        services.AddScoped<ISearchProvider, MongoDbVectorSearchProvider>();
+        services.AddScoped<MongoDbBm25SearchProvider>();
+        services.AddScoped<MongoDbVectorSearchProvider>();
+        services.AddScoped<MongoDbHybridSearchProvider>();
+        services.AddScoped<ISearchProvider>(sp => sp.GetRequiredService<MongoDbBm25SearchProvider>());
+        services.AddScoped<ISearchProvider>(sp => sp.GetRequiredService<MongoDbVectorSearchProvider>());
+        services.AddScoped<ISearchProvider>(sp => sp.GetRequiredService<MongoDbHybridSearchProvider>());
     }
 }

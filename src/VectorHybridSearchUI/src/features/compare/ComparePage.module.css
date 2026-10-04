@@ -1,0 +1,126 @@
+.comparison {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+
+/* Headline figures as a row of small tiles. */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--s3);
+}
+
+.stat {
+  composes: card from "../../components/controls.module.css";
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+  padding: var(--s3) var(--s4);
+}
+
+.statName {
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+
+.statValue {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: var(--leading-tight);
+}
+
+.failed {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--s4);
+}
+
+.columnsWithBridge {
+  composes: columns;
+  grid-template-columns: minmax(0, 1fr) 13rem minmax(0, 1fr);
+}
+
+.column {
+  composes: card from "../../components/controls.module.css";
+  overflow: hidden;
+}
+
+/* The tinted head and its coloured top edge say which engine the column is, before any text is read. */
+.columnHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s1) var(--s4);
+  padding: var(--s3) var(--s4);
+  background: var(--engine-tint);
+  box-shadow: inset 0 3px 0 var(--engine);
+}
+
+.columnCount {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.columnMessage {
+  padding: var(--s4);
+}
+
+.results > :first-child {
+  border-top: 0;
+}
+
+/* Rank relation to the other engine, under each result. */
+.shared,
+.unique {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s1) var(--s2);
+  font-size: var(--text-sm);
+}
+
+.shared {
+  color: var(--ink-2);
+}
+
+.delta {
+  padding: 0.05em 0.65em;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--surface);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.unique {
+  align-self: flex-start;
+  gap: 0.45em;
+  padding: 0.05em 0.65em;
+  border-radius: var(--radius-pill);
+  background: var(--engine-tint);
+  box-shadow: inset 0 0 0 var(--rule-width) var(--engine);
+  font-weight: 600;
+}
+
+@media (max-width: 68rem) {
+  .columns,
+  .columnsWithBridge {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Stacked: the bridge leads, then the two lists. */
+  .columnsWithBridge > figure {
+    position: static;
+    order: -1;
+  }
+}

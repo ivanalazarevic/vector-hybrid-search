@@ -1,0 +1,25 @@
+.glyph {
+  flex: none;
+  width: 0.65em;
+  height: 0.65em;
+  fill: var(--engine);
+}
+
+/* The square gets a slightly softened corner so it sits with the rounded UI but still reads as a square. */
+.glyph rect {
+  rx: 1.5px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badgeLarge {
+  composes: badge;
+  font-size: var(--text-lg);
+  letter-spacing: -0.01em;
+}

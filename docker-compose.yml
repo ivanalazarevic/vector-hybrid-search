@@ -28,7 +28,7 @@ services:
 
 
   mongodb:
-    image: mongodb/mongodb-atlas-local:preview
+    image: mongodb/mongodb-atlas-local:8.3.4
     container_name: mongodb
     hostname: mongodb
     environment:

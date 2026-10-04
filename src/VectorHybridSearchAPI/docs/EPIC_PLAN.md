@@ -395,6 +395,22 @@ Design and test the hybrid scoring method used to combine keyword and vector sea
 - Diagnostics show how final rank was produced.
 - Thesis can explain the chosen hybrid strategy clearly.
 
+### Implementation Status (2026-10-04)
+
+Hybrid search takes an optional `hybrid` object on `POST /api/search`: `strategy` (`Rrf` = 1, default; `Native` = 2), `bm25Weight`, `vectorWeight`, `rrfK`.
+
+| Strategy | Elasticsearch | MongoDB |
+| --- | --- | --- |
+| `Rrf` | Application-level weighted RRF over the engine's own BM25 and vector results | The same code, over MongoDB's BM25 and vector results |
+| `Native` | `script_score`: BM25 score × weight + (cosine + 1) × weight | `$rankFusion` over a `$search` and a `$vectorSearch` pipeline |
+
+- `Rrf` is the primary comparison: the fusion code (`Search/Fusion/RankFusion.cs`) is identical for both engines, works on article-level lists, and fills `bm25Rank` / `vectorRank` on each result.
+- The two `Native` variants are not equivalent, which is itself a finding:
+  - Elasticsearch `script_score` only re-scores documents matched by the BM25 query, so an article found only by vector similarity can never appear. The `rrf` retriever would fuse both lists, but it is not in the basic licence.
+  - MongoDB `$rankFusion` fuses chunk-level lists (before the collapse to articles) with a rank constant fixed at 60, so `rrfK` is not used. Search highlights are not available after `$rankFusion`.
+- Score normalization was not implemented: rank-based fusion avoids comparing raw BM25 and vector scores.
+- Still open: experiments over several weight values (roadmap Phase 5, once real embeddings exist).
+
 ## Epic 8: Analytics and Experiment Evaluation
 
 ### Objective
